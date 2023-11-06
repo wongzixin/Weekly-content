@@ -1,0 +1,6 @@
+"0","# Enter code here"
+"0","comm_data %>%"
+"0","  group_by(date) %>%"
+"0","  summarise(total_characters = sum(nchar(message))) %>%"
+"0","  arrange(desc(total_characters)) %>%"
+"0","    slice(1)"

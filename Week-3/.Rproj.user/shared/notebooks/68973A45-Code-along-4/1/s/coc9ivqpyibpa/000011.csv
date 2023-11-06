@@ -1,0 +1,8 @@
+"0",""
+"0","hotels %>%"
+"0","  mutate(little_ones = children + babies) %>%"
+"0","  filter("
+"0","    little_ones >=1,"
+"0","    hotel == ""City Hotel"""
+"0","  ) %>% "
+"0","  select(hotel, little_ones)"

@@ -1,0 +1,78 @@
+---
+title: "Challenge-6"
+author: "Wong Zi Xin"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Questions
+<br>
+
+#### Question-1: Countdown Blastoff (While Loop)
+
+Create a program that simulates a rocket launch countdown using a while loop. Start from 10 and countdown to "Blastoff!" with a one-second delay between each countdown number. Print a message when the rocket launches.
+
+**Hint:** You may want to use `cat` command to print the countdown and `Sys.sleep` for incorporating the delay
+
+**Output preview:** Here is how the countdown could look like 
+
+```{r, out.height= "100px",out.width= "200px",echo=FALSE}
+knitr::include_graphics("/Users/zixinwong/Downloads/countdown1.jpeg")
+```
+
+```{r, out.height= "100px",out.width= "200px",echo=FALSE}
+knitr::include_graphics("/Users/zixinwong/Downloads/blastoff.webp")
+```
+
+**Solutions:**
+
+```{r, eval=T,echo=TRUE}
+# Enter code here
+countdown_to_blastoff <- function() {
+  countdown <- 10
+  
+  while (countdown >= 1) {
+    cat("Countdown:", countdown, "\n")
+    Sys.sleep(1)  
+    countdown <- countdown - 1
+  }
+  
+  cat("Blastoff!\n")
+  knitr::include_graphics("/Users/zixinwong/Downloads/blastoff.webp")
+}
+
+countdown_to_blastoff()
+```
+<br>
+
+#### Question-2: Word Reverser (for Loop)
+
+Develop a program that takes a user-entered word and uses a while loop to print the word's characters in reverse order. For example, if the user enters "hello," the program should print "olleh."
+
+**Hint:** You may want to use `substr` command to access each character of the input word, and `paste` command to join the reversed letters one at a time
+
+**Solutions:** 
+
+```{r, eval=T,echo=TRUE}
+# Enter code here
+reverse_word <- function(input_word) {
+  reversed_word <- "" 
+  i <- nchar(input_word)  
+  
+  while (i > 0) {
+    reversed_word <- paste(reversed_word, substr(input_word, i, i), sep = "")
+    i <- i - 1
+  }
+  
+  cat("Reversed word:", reversed_word, "\n")
+}
+
+user_input <- "Butterfly"
+
+reverse_word(user_input)
+```
+<br>

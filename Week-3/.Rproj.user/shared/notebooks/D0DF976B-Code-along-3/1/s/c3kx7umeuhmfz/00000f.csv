@@ -1,0 +1,7 @@
+"0","# Convert the variable number_of_cats using as.integer()"
+"0","mean(as.integer(cat_lovers$number_of_cats)) "
+"2","Warning: NAs introduced by coercion"
+"1","[1]"
+"1"," NA"
+"1","
+"

@@ -1,0 +1,4 @@
+"0","# Boxplot and outliers"
+"0","# Enter code here"
+"0","ggplot(loans, aes(x = annual_income)) + "
+"0","  geom_boxplot()"

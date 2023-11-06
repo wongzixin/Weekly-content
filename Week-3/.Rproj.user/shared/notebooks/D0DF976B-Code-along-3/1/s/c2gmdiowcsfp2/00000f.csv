@@ -1,0 +1,8 @@
+"0","# Empty vector"
+"0","x <- vector()"
+"0","# Type of the empty vector"
+"0","typeof(x)"
+"1","[1]"
+"1"," ""logical"""
+"1","
+"

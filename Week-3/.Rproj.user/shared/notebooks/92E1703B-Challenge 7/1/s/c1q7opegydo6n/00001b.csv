@@ -1,0 +1,7 @@
+"0","# Ridge plots "
+"0","# Enter code here"
+"0","#install.packages(""ggridges"")"
+"0","library(ggridges)"
+"0","library(ggplot2)"
+"0","ggplot(loans, aes(x = loan_amount, y = grade, fill = grade, colour = grade)) +"
+"0","  geom_density_ridges(alpha = 0.5)"

@@ -1,0 +1,4 @@
+"0","# Enter code here"
+"0","comm_data %>% "
+"0","  filter(sentiment < 0) %>% "
+"0","  select(date,channel,sender,message,sentiment) "

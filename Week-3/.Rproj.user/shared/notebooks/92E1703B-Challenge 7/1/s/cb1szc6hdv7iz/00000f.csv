@@ -1,0 +1,8 @@
+"0","# Mapping shape to a specific variable "
+"0","# Enter code here"
+"0","ggplot(penguins) +"
+"0","       aes(x=bill_depth_mm,"
+"0","           y=bill_length_mm,"
+"0","           colour = species,"
+"0","           shape = species) +"
+"0","  geom_point() + scale_colour_viridis_d()"

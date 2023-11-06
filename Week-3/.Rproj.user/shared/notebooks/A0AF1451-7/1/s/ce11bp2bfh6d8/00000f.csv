@@ -1,0 +1,6 @@
+"0","# Adding a categoric variable"
+"0","# Enter code here"
+"0","ggplot(loans, aes(x = interest_rate,"
+"0","y = grade)) +"
+"0","  geom_boxplot() +"
+"0","  labs(x = ""Interest rate (%)"",y = ""Grade"",title = ""Interest rates of Lending Club loans"",subtitle = ""by grade of loan"")"

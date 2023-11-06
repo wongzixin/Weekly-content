@@ -1,0 +1,92 @@
+---
+title: "Week 11 Challenge"
+author: "Wong Zi Xin"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r, eval=TRUE,echo=TRUE}
+library(httr)
+library(jsonlite)
+library(tidyverse)
+
+historic_state_data_url <- "https://api.covidactnow.org/v2/states.timeseries.json?apiKey=0204bfb158084babbdb3303aed7996f4"
+raw_data <- GET(historic_state_data_url)
+
+data <- fromJSON(rawToChar(raw_data$content))
+glimpse(data)
+
+time_series <- data %>%
+  unnest(actualsTimeseries)
+
+# Creating a new dataframe with needed data
+# Save date
+time_series_transmission <- tibble(Date=time_series$cdcTransmissionLevelTimeseries[[which(data$state=="CA")]]$date)
+# Transmission levels in each state
+time_series_transmission$Alaska <- time_series$cdcTransmissionLevelTimeseries[[which(data$state=="AK")]]$
+cdcTransmissionLevel
+time_series_transmission$California <- time_series$cdcTransmissionLevelTimeseries[[which(data$state=="CA")]]$cdcTransmissionLevel
+time_series_transmission$New_Jersey <- time_series$cdcTransmissionLevelTimeseries[[which(data$state=="NJ")]]$cdcTransmissionLevel
+time_series_transmission$Tennessee <- time_series$cdcTransmissionLevelTimeseries[[which(data$state=="TN")]]$cdcTransmissionLevel
+time_series_transmission$District_of_Columbia <- time_series$cdcTransmissionLevelTimeseries[[which(data$state=="DC")]]$cdcTransmissionLevel
+print(head(time_series_transmission))
+```
+
+```{r, eval=TRUE,echo=TRUE}
+# New data-frame with dates
+time_series_cases <- list(Alaska = time_series %>% filter(state=="AK") %>% select(date,cases))
+# Cases of each state
+time_series_cases$California <- time_series %>% filter(state=="CA") %>% select(date,cases)
+time_series_cases$New_Jersey <- time_series %>% filter(state=="NJ") %>% select(date,cases)
+time_series_cases$Tennessee <- time_series %>% filter(state=="TN") %>% select(date,cases)
+time_series_cases$District_of_Columbia <- time_series %>% filter(state=="DC") %>% select(date,cases)
+
+ggplot(data, aes(x=state,y=population)) + geom_bar(stat="identity") +labs(x="States",y="Population") + theme_bw()
+```
+
+```{r, eval=TRUE,echo=TRUE}
+ggplot(data, aes(x=state,y=(data$actuals$cases/population))) + geom_bar(stat="identity") + labs(x="State
+s",y="Infected (%)")+theme_bw()
+```
+
+```{r, eval=TRUE,echo=TRUE}
+time_series_transmission[seq(1,1300,by=100),]%>%
+pivot_longer(cols=Alaska:District_of_Columbia,names_to="Countries",values_to="Transmission") %>%
+ggplot(aes(x=Date,y=Transmission,colour=Countries,group=Countries)) +
+geom_point(show.legend=TRUE) + labs(x="Date",y="Transmission Level")+theme_bw()
+```
+
+```{r, eval=TRUE,echo=TRUE}
+data_to_plot <- tibble(Date_Alaska = time_series_cases$Alaska$date[seq(1,1300,by=100)],
+Cases_Alaska = time_series_cases$Alaska$cases[seq(1,1300,by=100)],
+Date_California = time_series_cases$California$date[seq(1,1300,by=100)],
+Cases_California = time_series_cases$California$cases[seq(1,1300,by=100)],
+Date_New_Jersey = time_series_cases$New_Jersey$date[seq(1,1300,by=100)],
+Cases_New_Jersey = time_series_cases$New_Jersey$cases[seq(1,1300,by=100)],
+Date_Tennessee = time_series_cases$Tennessee$date[seq(1,1300,by=100)],
+Cases_Tennessee = time_series_cases$Tennessee$cases[seq(1,1300,by=100)], Date_District_of_Columbia = time_series_cases$District_of_Columbia$date[seq(1,1300,by=100)], Cases_District_of_Columbia = time_series_cases$District_of_Columbia$cases[seq(1,1300,by=100)])
+data_to_plot
+```
+
+```{r, eval=TRUE,echo=TRUE}
+library(cowplot)
+fig1<- ggplot(data_to_plot, aes(x=Date_Alaska,y=Cases_Alaska)) +
+geom_point() + labs(x="Date",y="Cases", title="Alaska") + theme_bw() 
+fig2<- ggplot(data_to_plot, aes(x=Date_California,y=Cases_California)) +
+geom_point() + labs(x="Date",y="Cases", title="California") + theme_bw()
+fig3<- ggplot(data_to_plot, aes(x=Date_New_Jersey,y=Cases_New_Jersey)) +
+geom_point() + labs(x="Date",y="Cases", title="New Jersey") + theme_bw()
+fig4<- ggplot(data_to_plot, aes(x=Date_Tennessee,y=Cases_Tennessee)) +
+geom_point() + labs(x="Date",y="Cases", title="Tennessee") + theme_bw()
+fig5<- ggplot(data_to_plot, aes(x=Date_District_of_Columbia,y=Cases_District_of_Columbia)) +
+geom_point() + labs(x="Date",y="Cases", title="District of Columbia") + theme_bw()
+
+plot_grid(fig1 + theme(legend.justification = c(0,1)),
+          fig2 + theme(legend.justification = c(1,0)),
+          fig3 + theme(legend.justification = c(0,1)),
+          fig4 + theme(legend.justification = c(1,0)),
+          fig5 + theme(legend.justification = c(0,1)),
+          align = "v", axis = "lr", nrow=3,
+          ncol = 2,labels = LETTERS[1:5],
+          rel_heights = c(1,2))
+```

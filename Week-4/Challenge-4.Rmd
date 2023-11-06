@@ -1,0 +1,213 @@
+---
+title: "Challenge-4"
+author: "Wong Zi Xin"
+date: "`r Sys.Date()`"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+<style>
+p.comment {
+background-color: #DBDBDB;
+padding: 10px;
+border: 1px solid black;
+margin-left: 25px;
+border-radius: 5px;
+font-style: italic;
+}
+
+</style>
+
+## Questions
+<br>
+
+Load the "CommQuest2023.csv" dataset using the `read_csv()` command and assign it to a variable named "comm_data." 
+
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+library(tidyverse)
+comm_data <- read.csv("CommQuest2023_Larger.csv")
+```
+<br>
+
+
+#### Question-1: Communication Chronicles
+
+Using the select command, create a new dataframe containing only the "date," "channel," and "message" columns from the "comm_data" dataset.
+
+**Solution:**
+
+```{r, eval=FALSE,echo=TRUE}
+# Enter code here
+select(comm_data,date,channel,message)
+```
+<br>
+
+#### Question-2: Channel Selection
+
+Use the filter command to create a new dataframe that includes messages sent through the "Twitter" channel on August 2nd.
+
+**Solution:**
+
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+comm_data %>% filter(date == "2023-08-02",channel == "Twitter") %>% select(date,channel,message)
+```
+<br>
+
+#### Question-3: Chronological Order
+
+Utilizing the arrange command, arrange the "comm_data" dataframe in ascending order based on the "date" column.
+
+**Solution:**
+
+```{r, eval=FALSE,echo=TRUE}
+# Enter code here
+comm_data %>% arrange(comm_data, date)
+```
+<br>
+
+#### Question-4: Distinct Discovery
+
+Apply the distinct command to find the unique senders in the "comm_data" dataframe.
+
+**Solution:**
+
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+comm_data %>% distinct(sender)
+```
+<br>
+
+#### Question-5: Sender Stats
+
+Employ the count and group_by commands to generate a summary table that shows the count of messages sent by each sender in the "comm_data" dataframe.
+
+**Solution:**
+
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+comm_data %>% 
+  group_by(sender) %>%
+  summarise(count=n())
+```
+<br>
+
+#### Question-6: Channel Chatter Insights
+
+Using the group_by and count commands, create a summary table that displays the count of messages sent through each communication channel in the "comm_data" dataframe.
+
+**Solution:**
+
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+comm_data %>% 
+  group_by(channel) %>%
+  summarise(count=n())
+```
+<br>
+
+#### Question-7: Positive Pioneers
+
+Utilize the filter, select, and arrange commands to identify the top three senders with the highest average positive sentiment scores. Display their usernames and corresponding sentiment averages.
+
+**Solution:**
+
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+comm_data %>%
+  group_by(sender) %>%
+  summarise(average_positive_sentiment_scores = mean(sentiment)) %>% 
+  filter(average_positive_sentiment_scores>0) %>%
+  arrange(desc(average_positive_sentiment_scores)) %>%
+  select(sender,average_positive_sentiment_scores) %>%
+  slice(1:3) 
+```
+<br>
+
+#### Question-8: Message Mood Over Time
+
+With the group_by, summarise, and arrange commands, calculate the average sentiment score for each day in the "comm_data" dataframe.
+
+**Solution:**
+
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+comm_data %>% 
+  group_by(date) %>% 
+  arrange(date) %>%
+  summarise(average_sentiment_score = mean(sentiment)) 
+```
+<br>
+
+#### Question-9: Selective Sentiments
+
+Use the filter and select commands to extract messages with a negative sentiment score (less than 0) and create a new dataframe.
+
+**Solution:**
+
+```{r, eval=FALSE,echo=TRUE}
+# Enter code here
+comm_data %>% 
+  filter(sentiment < 0) %>% 
+  select(date,channel,sender,message,sentiment) 
+```
+<br>
+
+#### Question-10: Enhancing Engagement
+
+Apply the mutate command to add a new column to the "comm_data" dataframe, representing a sentiment label: "Positive," "Neutral," or "Negative," based on the sentiment score.
+
+**Solution:**
+
+```{r, eval=FALSE,echo=TRUE}
+# Enter code here
+comm_data %>%
+  mutate(sentiment_label = case_when(
+    sentiment > 0 ~ "Positive",
+    sentiment == 0 ~ "Neutral",
+    sentiment < 0 ~ "Negative"))
+```
+<br>
+
+#### Question-11: Message Impact
+
+Create a new dataframe using the mutate and arrange commands that calculates the product of the sentiment score and the length of each message. Arrange the results in descending order.
+
+**Solution:**
+
+```{r, eval=FALSE,echo=TRUE}
+# Enter code here
+comm_data %>%
+  mutate(sentiment_product = sentiment * nchar(message)) %>%
+  arrange(desc(sentiment_product))
+```
+<br>
+
+#### Question-12: Daily Message Challenge
+
+Use the group_by, summarise, and arrange commands to find the day with the highest total number of characters sent across all messages in the "comm_data" dataframe.
+
+**Solution:**
+
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+comm_data %>%
+  group_by(date) %>%
+  summarise(total_characters = sum(nchar(message))) %>%
+  arrange(desc(total_characters)) %>%
+    slice(1) 
+```
+<br>
+
+#### Question-13: Untidy data
+
+Can you list at least two reasons why the dataset illustrated in slide 10 is non-tidy? How can it be made Tidy?
+
+**Solution:** Firstly, variables are not organised properly and each observation does not form a row. For example, "Unemployed", "Unemployment Rate" and "Employed" all exist as rows instead of columns in the table. Secondly, there are blanks in the rows, which makes the table harder to read and comprehend. 
+Reasons why the dataset is non-tidy: Age classification is included as sub-headings in the data-set, so is the employment under each age category. Instead, we could have had age and employment as two separate columns or variables. That would make the data-set conform to Tidy data structure.

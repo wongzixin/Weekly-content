@@ -1,0 +1,35 @@
+---
+title: "NM2207 Challenge 1 (Resubmission)"
+author: "Wong Zi Xin"
+date: "`r Sys.Date()`"
+output:
+  pdf_document: default
+  html_document: default
+---
+```{r, out.height= "350px",out.width= "800px",echo=TRUE,eval=TRUE,fig.cap="Attending a birthday party with my friends!"}
+knitr::include_graphics("/Users/zixinwong/Downloads/photo_2023-08-14 21.42.40.jpeg") 
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Self-introduction
+
+My name is Wong Zi Xin. I am a Year 3 undergraduate student double majoring in Psychology and Communications and New Media. A fun fact about myself is I really love the cartoon penguin "Pororo", although I have never actually watched it before! 
+
+In my free time, I like to dance. I am a member of the NUS D'Hoppers Dance Crew. I also enjoy travelling, and wish to visit Mongolia one day.
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

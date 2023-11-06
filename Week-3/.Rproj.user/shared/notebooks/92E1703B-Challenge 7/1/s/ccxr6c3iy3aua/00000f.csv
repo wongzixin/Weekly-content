@@ -1,0 +1,4 @@
+"0","# Bar plot"
+"0","# Enter code here"
+"0","ggplot(loans, aes(x = homeownership)) +"
+"0","  geom_bar()"

@@ -1,0 +1,5 @@
+"0","# Hex plot"
+"0","# Enter code here"
+"0","ggplot(loans %>% filter(debt_to_income < 100),"
+"0","       aes(x = debt_to_income, y = interest_rate)) +"
+"0","geom_hex()"

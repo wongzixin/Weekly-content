@@ -1,0 +1,2 @@
+"0","# Read data from the hotels.csv file and assign it to a variable named, ""hotels"""
+"0","hotels <- read.csv(""hotels.csv"")"

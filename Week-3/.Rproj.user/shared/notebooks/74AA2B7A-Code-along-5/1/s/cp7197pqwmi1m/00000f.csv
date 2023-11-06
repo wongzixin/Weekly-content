@@ -1,0 +1,6 @@
+"0","# set error=TRUE to see the error message in the output"
+"0","# Enter code here "
+"0","calc_sample_mean(our_mean=5)"
+"2","Error in calc_sample_mean(our_mean = 5) : 
+  argument ""sample_size"" is missing, with no default
+"

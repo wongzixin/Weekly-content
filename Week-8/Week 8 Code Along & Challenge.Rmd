@@ -1,0 +1,38 @@
+---
+title: "Week 8 Code Along & Challenge"
+author: "Wong Zi Xin"
+date: "`r Sys.Date()`"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+For this week's code along and challenge, I explored the "10_download" example on Shiny. I modified it such that the datasets to select from were self-sourced. I utilised previous datasets used in class related to animals (penguins and cats), and sourced for one more animal dataset via Github (dogs).
+
+```{r, eval=TRUE,echo=TRUE}
+knitr::include_graphics("/Users/zixinwong/Desktop/Screenshot 2023-10-09 at 7.33.38 PM.png")
+
+knitr::include_graphics("/Users/zixinwong/Desktop/Screenshot 2023-10-09 at 7.34.04 PM.png")
+
+knitr::include_graphics("/Users/zixinwong/Desktop/Screenshot 2023-10-09 at 7.51.17 PM.png")
+```
+In the side panel, I edited the title panel to be "Download any Dataset" as there are 3 datasets for users to choose from. 
+
+In the sidebar panel, I labelled the choices to be quick and easy to read, using just the names of the 3 animal types (penguins, cats and dogs). I kept the download button labelled as "Download" as it is clear and straightforward. 
+
+In the main panel, I included a first title "Let's explore datasets!" as a brief introduction for users to know how to interact with this example. I included a fourth title telling users they can do so by choosing their favourite animal and then "click on the download button to explore the respective dataasets". I also further elaborated on what each dataset contains as a paragraph stating "Each dataset contains basic information about the different characteristics of each animal". As the main point was to let users know the datasets contain key animal characteristics, I italicised the phrase "different characteristics". 
+
+Lastly, to make the interface more visually appealing, I added in cute photos of the different types of animals corresponding to their datasets. I used the conditional panel command to ensure that the images only appear corresponding to the specific animal type. 
+
+
+

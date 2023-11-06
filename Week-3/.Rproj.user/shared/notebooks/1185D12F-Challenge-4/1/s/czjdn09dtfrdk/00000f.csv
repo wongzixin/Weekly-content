@@ -1,0 +1,5 @@
+"0","# Enter code here"
+"0","comm_data %>% "
+"0","  group_by(date) %>% "
+"0","  arrange(date) %>%"
+"0","  summarise(average_sentiment_score = mean(sentiment)) "

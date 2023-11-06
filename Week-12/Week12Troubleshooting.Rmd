@@ -1,0 +1,37 @@
+---
+title: "testing"
+author: "Wong Zi Xin"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r, eval=TRUE,echo=TRUE}
+country_mapping <- c(
+  AT = "Austria", BE = "Belgium", BG = "Bulgaria", CY = "Cyprus",
+  CZ = "Czech Republic", DE = "Germany", DK = "Denmark", EE = "Estonia",
+  EL = "Greece", ES = "Spain", FI = "Finland", FR = "France",
+  HR = "Croatia", HU = "Hungary", IE = "Ireland", IT = "Italy",
+  LT = "Lithuania", LU = "Luxembourg", LV = "Latvia", MT = "Malta",
+  NL = "Netherlands", PL = "Poland", PT = "Portugal", RO = "Romania",
+  SE = "Sweden", SI = "Slovenia", SK = "Slovakia"
+)
+
+data <- read.csv("EU27_passenger_data.csv")
+filtered_data <- data %>%
+  select(TIME_PERIOD, OBS_VALUE, geo) %>%
+  filter(!geo %in% c("BA", "CH", "EU27_2020", "IS", "ME", "MK", "NO", "RS", "UK"))
+
+filtered_data <- filtered_data %>%
+  mutate(Country = recode(geo, !!!country_mapping))
+
+final_data <- filtered_data %>%
+  pivot_wider(
+    names_from = TIME_PERIOD,
+    values_from = OBS_VALUE,
+    id_cols = Country
+  )
+
+print(final_data)
+```
+
+

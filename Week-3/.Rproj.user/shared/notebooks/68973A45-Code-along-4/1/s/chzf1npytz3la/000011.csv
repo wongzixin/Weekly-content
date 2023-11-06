@@ -1,0 +1,45 @@
+"0","# Enter code here"
+"0","glimpse(hotels)"
+"1","Rows: 119,390"
+"1",""
+"1","
+"
+"1","Columns: 32"
+"1",""
+"1","
+"
+"1","$ hotel                          [3m[38;5;246m<chr>[39m[23m ""Resort Hotel"", ""Resort Hotel"", ""Resort Ho…
+$ is_canceled                    [3m[38;5;246m<int>[39m[23m 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, …
+$ lead_time                      [3m[38;5;246m<int>[39m[23m 342, 737, 7, 13, 14, 14, 0, 9, 85, 75, 23,…
+$ arrival_date_year              [3m[38;5;246m<int>[39m[23m 2015, 2015, 2015, 2015, 2015, 2015, 2015, …
+$ arrival_date_month             [3m[38;5;246m<chr>[39m[23m ""July"", ""July"", ""July"", ""July"", ""July"", ""J…
+$ arrival_date_week_number       [3m[38;5;246m<int>[39m[23m 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27…
+$ arrival_date_day_of_month      [3m[38;5;246m<int>[39m[23m 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …
+$ stays_in_weekend_nights        [3m[38;5;246m<int>[39m[23m 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ stays_in_week_nights           [3m[38;5;246m<int>[39m[23m 0, 0, 1, 1, 2, 2, 2, 2, 3, 3, 4, 4, 4, 4, …
+$ adults                         [3m[38;5;246m<int>[39m[23m 2, 2, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, …
+$ children                       [3m[38;5;246m<int>[39m[23m 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, …
+$ babies                         [3m[38;5;246m<int>[39m[23m 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ meal                           [3m[38;5;246m<chr>[39m[23m ""BB"", ""BB"", ""BB"", ""BB"", ""BB"", ""BB"", ""BB"", …
+$ country                        [3m[38;5;246m<chr>[39m[23m ""PRT"", ""PRT"", ""GBR"", ""GBR"", ""GBR"", ""GBR"", …
+$ market_segment                 [3m[38;5;246m<chr>[39m[23m ""Direct"", ""Direct"", ""Direct"", ""Corporate"",…
+$ distribution_channel           [3m[38;5;246m<chr>[39m[23m ""Direct"", ""Direct"", ""Direct"", ""Corporate"",…
+$ is_repeated_guest              [3m[38;5;246m<int>[39m[23m 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ previous_cancellations         [3m[38;5;246m<int>[39m[23m 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ previous_bookings_not_canceled [3m[38;5;246m<int>[39m[23m 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ reserved_room_type             [3m[38;5;246m<chr>[39m[23m ""C"", ""C"", ""A"", ""A"", ""A"", ""A"", ""C"", ""C"", ""A…
+$ assigned_room_type             [3m[38;5;246m<chr>[39m[23m ""C"", ""C"", ""C"", ""A"", ""A"", ""A"", ""C"", ""C"", ""A…
+$ booking_changes                [3m[38;5;246m<int>[39m[23m 3, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, …
+$ deposit_type                   [3m[38;5;246m<chr>[39m[23m ""No Deposit"", ""No Deposit"", ""No Deposit"", …
+$ agent                          [3m[38;5;246m<chr>[39m[23m ""NULL"", ""NULL"", ""NULL"", ""304"", ""240"", ""240…
+$ company                        [3m[38;5;246m<chr>[39m[23m ""NULL"", ""NULL"", ""NULL"", ""NULL"", ""NULL"", ""N…
+$ days_in_waiting_list           [3m[38;5;246m<int>[39m[23m 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ customer_type                  [3m[38;5;246m<chr>[39m[23m ""Transient"", ""Transient"", ""Transient"", ""Tr…
+$ adr                            [3m[38;5;246m<dbl>[39m[23m 0.00, 0.00, 75.00, 75.00, 98.00, 98.00, 10…
+$ required_car_parking_spaces    [3m[38;5;246m<int>[39m[23m 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ total_of_special_requests      [3m[38;5;246m<int>[39m[23m 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 3, 1, …
+$ reservation_status             [3m[38;5;246m<chr>[39m[23m ""Check-Out"", ""Check-Out"", ""Check-Out"", ""Ch…
+$ reservation_status_date        [3m[38;5;246m<chr>[39m[23m ""2015-07-01"", ""2015-07-01"", ""2015-07-02"", …"
+"1",""
+"1","
+"

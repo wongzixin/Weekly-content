@@ -1,0 +1,7 @@
+"0","# complete the code to generate the plot"
+"0",""
+"0","ggplot(playlist_data) +"
+"0","aes(x=Age,y=Rating) +"
+"0","  geom_point(shape=4) + "
+"0","  labs(title=""Age versus Rating"",caption = ""Source: tidyverse/ playlist dataset"")"
+"0",""

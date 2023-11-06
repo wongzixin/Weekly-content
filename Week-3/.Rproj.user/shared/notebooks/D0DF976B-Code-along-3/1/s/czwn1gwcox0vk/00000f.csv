@@ -1,0 +1,8 @@
+"0","# Add a logical value to the vector"
+"0","x<-c(x,TRUE)"
+"0","# Check the type of x"
+"0","typeof(x)"
+"1","[1]"
+"1"," ""character"""
+"1","
+"

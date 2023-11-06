@@ -1,0 +1,7 @@
+"0","# Enter code here"
+"0","grades<-c(85,90.5,""75.2"")"
+"0","print(mean(as.integer(grades))) "
+"1","[1]"
+"1"," 83.33333"
+"1","
+"

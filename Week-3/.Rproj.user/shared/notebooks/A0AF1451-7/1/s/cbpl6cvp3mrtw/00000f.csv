@@ -1,0 +1,4 @@
+"0","# Customising bar plots"
+"0","# Enter code here"
+"0","ggplot(loans, aes(y = homeownership, fill = grade)) + geom_bar(position = ""fill"") +"
+"0","  labs(x = ""Proportion"", y = ""Homownership"", fill = ""Grade"", title = ""Grades of Lending Club Loans"")"

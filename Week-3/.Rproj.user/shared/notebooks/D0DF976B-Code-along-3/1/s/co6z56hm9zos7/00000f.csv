@@ -1,0 +1,7 @@
+"0","# Compute the mean of the number of cats: execute this command"
+"0","mean(cat_lovers$number_of_cats)"
+"2","Warning: argument is not numeric or logical: returning NA"
+"1","[1]"
+"1"," NA"
+"1","
+"

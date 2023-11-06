@@ -1,0 +1,6 @@
+"0","# Enter code here"
+"0","comm_data %>%"
+"0","  mutate(sentiment_label = case_when("
+"0","    sentiment > 0 ~ ""Positive"","
+"0","    sentiment == 0 ~ ""Neutral"","
+"0","    sentiment < 0 ~ ""Negative""))"

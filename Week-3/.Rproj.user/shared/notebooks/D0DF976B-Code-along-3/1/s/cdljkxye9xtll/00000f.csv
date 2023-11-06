@@ -1,0 +1,8 @@
+"0","# Create a vector"
+"0","x<-c('a')"
+"0","# Check the type of x"
+"0","typeof(x)"
+"1","[1]"
+"1"," ""character"""
+"1","
+"

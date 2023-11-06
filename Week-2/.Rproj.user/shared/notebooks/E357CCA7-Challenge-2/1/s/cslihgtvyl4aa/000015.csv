@@ -1,0 +1,6 @@
+"0","# No output is required for this code"
+"0","# Only the list of commands that execute the task mentioned in the question are required"
+"0","library(tidyverse)"
+"0","read_csv(""sales_data.csv"")"
+"2","Error: 'sales_data.csv' does not exist in current working directory ('/Users/zixinwong/Desktop/NUS/Academics/CNM/NM2207/Week-2').
+"

@@ -1,0 +1,5 @@
+"0","# Enter code here"
+"0","hotels %>%"
+"0","  filter(adults == 1,"
+"0","         children >= 1 | babies >= 1) %>%"
+"0","  select(adults,babies,children)"

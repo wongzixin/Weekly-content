@@ -1,0 +1,5 @@
+"0","# Enter code here"
+"0","hotels %>% "
+"0","  mutate(little_ones = children + babies,"
+"0","         average_little_ones = mean(little_ones)) %>%"
+"0","    select(hotel,little_ones,children,babies,average_little_ones)"

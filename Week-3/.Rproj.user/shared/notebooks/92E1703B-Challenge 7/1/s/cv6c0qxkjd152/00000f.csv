@@ -1,0 +1,6 @@
+"0","# Facet with a categorical variable"
+"0","# Enter code here"
+"0","ggplot(loans, aes(x = loan_amount, fill = homeownership)) + "
+"0","  geom_histogram(binwidth = 5000) +"
+"0","  labs(x = ""Loan amount ($)"", y = ""Frequency"", title = ""Amounts of Lending Club Loans"") + "
+"0","  facet_wrap(~ homeownership, nrow = 3)"

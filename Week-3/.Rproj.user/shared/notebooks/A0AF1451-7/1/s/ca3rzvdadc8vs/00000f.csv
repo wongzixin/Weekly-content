@@ -1,0 +1,4 @@
+"0","# Segmented Bar plot with equal heights for better comparison"
+"0","# Enter code here"
+"0","ggplot(loans, aes(x = homeownership, fill = grade)) +"
+"0","  geom_bar(position = ""fill"")"

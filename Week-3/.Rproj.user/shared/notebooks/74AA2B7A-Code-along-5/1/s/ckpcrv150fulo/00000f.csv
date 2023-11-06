@@ -1,0 +1,8 @@
+"0","# Enter code here"
+"0","library(tidyverse)"
+"0","sample_tibble <- tibble(sample_sizes = "
+"0","                          c(100,300,3000))"
+"0","sample_tibble %>% "
+"0","  group_by(sample_sizes) %>%"
+"0","  mutate(sample_means = "
+"0","           calc_sample_mean(sample_sizes))"

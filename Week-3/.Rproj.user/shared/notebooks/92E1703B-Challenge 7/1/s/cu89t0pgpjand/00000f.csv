@@ -1,0 +1,4 @@
+"0","# Adjusting binwidth=20000"
+"0","# Enter code here"
+"0","ggplot(loans) + aes(x = loan_amount) +"
+"0","  geom_histogram(binwidth = 20000)"

@@ -1,0 +1,8 @@
+"0","# Enter code here"
+"0","mixed_data <- list(numeric_vector = c(10, 20, 30),character_vector = c(""red"", ""green"", ""blue""),logical_vector = c(TRUE, FALSE, TRUE))"
+"0","mean_numeric_vector <- mean(mixed_data$numeric_vector)"
+"0","print(mean_numeric_vector)"
+"1","[1]"
+"1"," 20"
+"1","
+"

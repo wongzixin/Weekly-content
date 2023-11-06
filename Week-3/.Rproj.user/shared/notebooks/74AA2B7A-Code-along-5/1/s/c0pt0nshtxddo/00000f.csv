@@ -1,0 +1,4 @@
+"0","# Enter code here"
+"0","calc_sample_mean <- function(sample_size) {"
+"0","  mean(rnorm(sample_size))"
+"0","}"

@@ -1,0 +1,4 @@
+"0","# Enter code here"
+"0","hotels %>% "
+"0","  group_by(hotel) %>%"
+"0","  summarise(count=n())"

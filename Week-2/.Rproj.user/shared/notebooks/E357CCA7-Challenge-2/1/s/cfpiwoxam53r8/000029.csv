@@ -1,0 +1,7 @@
+"0","# complete the code to generate the plot"
+"0",""
+"0","ggplot(playlist_data) +"
+"0",""
+"0","aes(x=Age,y=Rating) +"
+"0","  geom_point(shape=4) # <-- Hint: Use ? to learn more about geom_point and use appropriate values for shape"
+"0",""

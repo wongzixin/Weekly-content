@@ -1,0 +1,66 @@
+---
+title: "Week 10 Final Project Diary"
+author: "Wong Zi Xin"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+# Week 9 Diary 
+## 1. What is the topic that you have finalised?
+The final topic that I have chosen is to create a data story and analyse global air transportation data and information. In particular, I will look at countries with the most air transport of passengers and try to analyse which regions do most people travel to, which regions have the most airports and observe trends over the years. I chose this topic as I am very interested in travelling, and am curious to derive insights about how the air transport industry has picked up again in a post COVID world.
+
+## 2. What are the data sources that you have curated so far?
+I mainly curated my data sources from Kaggle, using datasets containing information about the number of air transport passengers carried by country and datasets containing informaion on the list of airports and airlines globally.
+
+Global datasets: 
+
+https://www.kaggle.com/datasets/tjkyner/global-air-transport-data
+
+https://www.kaggle.com/datasets/thedevastator/global-air-transportation-network-mapping-the-wo
+
+https://www.kaggle.com/datasets/johnmwega/trends-and-insights-of-global-tourism
+
+Dataset specifically looking at Europe, if I decide to further scope my analysis to a specific region: 
+
+https://www.kaggle.com/datasets/gpreda/passengers-air-transport-in-europe
+
+https://data.europa.eu/data/datasets/38mt9yvqp2fhg7wwgqf13q?locale=en
+
+
+# Week 10 Diary 
+
+## 1. What is the question you are going to answer? 
+How have air transportation trends in the region of Europe evolved over the years, especially in a post COVID world? 
+
+## 2. Why is this an important question?
+According to the International Air Transport Association (IATA), air travel is one of the most important modes of transportation as the aviation industry contributes significantly to global GDP by facilitating global trade, business, tourism and more. With the outbreak of the COVID-19 pandemic IATA revealed the aviation industry suffered a loss of $118 billion in 2020, but with the gradual revival of air travel post-COVID, insights into air travel can better inform strategies to foster economic recovery. Europe was selected as the focus region as according to the United Nations World Tourism Organisation (UNWTO), Europe is the world's top tourist destination.  
+
+Sources: 
+https://www.iata.org/en/iata-repository/publications/economic-reports/aviation-economic-benefits/
+
+https://www.iata.org/en/iata-repository/publications/economic-reports/understanding-the-pandemics-impact-on-the-aviation-value-chain/
+
+https://www.unwto.org/impact-assessment-of-the-covid-19-outbreak-on-international-tourism
+
+## 3. Which rows and columns of the dataset will be used to answer this question? 
+Columns that are useful to answer this question will be geo (for the country’s name), TIME_PERIOD (to represent the corresponding year) and OBS_VALUE (to represent the total number of passengers). All rows are useful as they represent unique data entries of each country by year.
+
+```{r, out.height= "350px",out.width= "800px",echo=FALSE,eval=TRUE,fig.cap="Screenshot of a portion of dataset used"}
+knitr::include_graphics("/Users/zixinwong/Desktop/Screenshot 2023-10-23 at 6.26.48 PM.png") 
+```
+
+## 4. Include the challenges and errors that you faced and how you overcame them.
+The main dataset that I am using, as seen in the screenshot provided when answering the above question, is not displayed in a very organised and tidy format. The data for each country for each year are all displayed as separate rows. This would make it difficult to create visualisation plots on R, therefore, the first thing I did was to tidy the dataset. 
+
+Firstly, I copied over only variables needed (geo, TIME_PERIOD and OBS_VALUE) into a new Excel sheet. Then, I used the pivot table function in Excel to reorganise the data to make it tidy. 
+
+```{r, out.height= "350px",out.width= "800px",echo=FALSE,eval=TRUE,fig.cap="Tidy dataset"}
+knitr::include_graphics("/Users/zixinwong/Desktop/Screenshot 2023-10-23 at 6.40.33 PM.png") 
+```
+After doing so, I realised there were missing values for certain years for some of the countries which I highlighted in yellow. I tried to resolve this issue by searching for other datasets to fill in the empty data entries, but was unable to do so. EU27_2020 is also highlighted in yellow despite not having missing values, as it represents the European Union consisting of 27 member countries from the year 2020 onwards. This means that the data for EU27_2020 consists of different countries data, hence I excluded it when carrying out my preliminary analyses which is focused on individual countries and trends over individual countries across the years. To proceed with my data analysis, I then decided to exclude the countries with missing data (BA, ME, MK, RS and UK) and EU27_2020. 
+
+```{r, out.height= "350px",out.width= "800px",echo=FALSE,eval=TRUE,fig.cap="Final dataset used after tidying and filtering out certain countries' data"}
+knitr::include_graphics("/Users/zixinwong/Desktop/Screenshot 2023-10-23 at 7.05.29 PM.png") 
+```
+
+After cleaning, tidying and filtering out the data, this is the final dataset I used in my preliminary data analyses. However, I will also be creating visualisations for the countries which have been excluded such that their data will be taken into account as well, during the later stages of data analysis. 

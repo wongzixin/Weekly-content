@@ -1,0 +1,4 @@
+"0","# Enter code here"
+"0","hotels %>%"
+"0","  count(market_segment) %>%"
+"0","  arrange(desc(n))"

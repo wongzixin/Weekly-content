@@ -1,0 +1,4 @@
+"0","# Scatterplot"
+"0","# Enter code here"
+"0","ggplot(loans, aes(x = debt_to_income, y = interest_rate)) +"
+"0","  geom_point()"

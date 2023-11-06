@@ -1,0 +1,2 @@
+"0","# Enter code here"
+"0","hotels %>% slice(1,3,5)"

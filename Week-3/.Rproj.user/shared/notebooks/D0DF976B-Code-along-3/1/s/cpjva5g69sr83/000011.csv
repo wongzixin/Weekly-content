@@ -1,0 +1,68 @@
+"0","# Catch a glimpse of the data-set: see how the rows are stacked one below another"
+"0","glimpse(loans_full_schema)"
+"1","Rows: 10,000"
+"1",""
+"1","
+"
+"1","Columns: 55"
+"1",""
+"1","
+"
+"1","$ emp_title                        [3m[38;5;246m<chr>[39m[23m ""global config engineer "", ""warehouse of…
+$ emp_length                       [3m[38;5;246m<dbl>[39m[23m 3, 10, 3, 1, 10, NA, 10, 10, 10, 3, 10, …
+$ state                            [3m[38;5;246m<fct>[39m[23m NJ, HI, WI, PA, CA, KY, MI, AZ, NV, IL, …
+$ homeownership                    [3m[38;5;246m<fct>[39m[23m MORTGAGE, RENT, RENT, RENT, RENT, OWN, M…
+$ annual_income                    [3m[38;5;246m<dbl>[39m[23m 90000, 40000, 40000, 30000, 35000, 34000…
+$ verified_income                  [3m[38;5;246m<fct>[39m[23m Verified, Not Verified, Source Verified,…
+$ debt_to_income                   [3m[38;5;246m<dbl>[39m[23m 18.01, 5.04, 21.15, 10.16, 57.96, 6.46, …
+$ annual_income_joint              [3m[38;5;246m<dbl>[39m[23m NA, NA, NA, NA, 57000, NA, 155000, NA, N…
+$ verification_income_joint        [3m[38;5;246m<fct>[39m[23m , , , , Verified, , Not Verified, , , , …
+$ debt_to_income_joint             [3m[38;5;246m<dbl>[39m[23m NA, NA, NA, NA, 37.66, NA, 13.12, NA, NA…
+$ delinq_2y                        [3m[38;5;246m<int>[39m[23m 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 0, 0, 0, 0…
+$ months_since_last_delinq         [3m[38;5;246m<int>[39m[23m 38, NA, 28, NA, NA, 3, NA, 19, 18, NA, 5…
+$ earliest_credit_line             [3m[38;5;246m<dbl>[39m[23m 2001, 1996, 2006, 2007, 2008, 1990, 2004…
+$ inquiries_last_12m               [3m[38;5;246m<int>[39m[23m 6, 1, 4, 0, 7, 6, 1, 1, 3, 0, 4, 4, 8, 6…
+$ total_credit_lines               [3m[38;5;246m<int>[39m[23m 28, 30, 31, 4, 22, 32, 12, 30, 35, 9, 22…
+$ open_credit_lines                [3m[38;5;246m<int>[39m[23m 10, 14, 10, 4, 16, 12, 10, 15, 21, 6, 10…
+$ total_credit_limit               [3m[38;5;246m<int>[39m[23m 70795, 28800, 24193, 25400, 69839, 42100…
+$ total_credit_utilized            [3m[38;5;246m<int>[39m[23m 38767, 4321, 16000, 4997, 52722, 3898, 1…
+$ num_collections_last_12m         [3m[38;5;246m<int>[39m[23m 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…
+$ num_historical_failed_to_pay     [3m[38;5;246m<int>[39m[23m 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0…
+$ months_since_90d_late            [3m[38;5;246m<int>[39m[23m 38, NA, 28, NA, NA, 60, NA, 71, 18, NA, …
+$ current_accounts_delinq          [3m[38;5;246m<int>[39m[23m 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…
+$ total_collection_amount_ever     [3m[38;5;246m<int>[39m[23m 1250, 0, 432, 0, 0, 0, 0, 0, 0, 0, 0, 0,…
+$ current_installment_accounts     [3m[38;5;246m<int>[39m[23m 2, 0, 1, 1, 1, 0, 2, 2, 6, 1, 2, 1, 2, 0…
+$ accounts_opened_24m              [3m[38;5;246m<int>[39m[23m 5, 11, 13, 1, 6, 2, 1, 4, 10, 5, 6, 7, 1…
+$ months_since_last_credit_inquiry [3m[38;5;246m<int>[39m[23m 5, 8, 7, 15, 4, 5, 9, 7, 4, 17, 3, 4, 1,…
+$ num_satisfactory_accounts        [3m[38;5;246m<int>[39m[23m 10, 14, 10, 4, 16, 12, 10, 15, 21, 6, 10…
+$ num_accounts_120d_past_due       [3m[38;5;246m<int>[39m[23m 0, 0, 0, 0, 0, 0, 0, NA, 0, 0, 0, 0, 0, …
+$ num_accounts_30d_past_due        [3m[38;5;246m<int>[39m[23m 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…
+$ num_active_debit_accounts        [3m[38;5;246m<int>[39m[23m 2, 3, 3, 2, 10, 1, 3, 5, 11, 3, 2, 2, 3,…
+$ total_debit_limit                [3m[38;5;246m<int>[39m[23m 11100, 16500, 4300, 19400, 32700, 27200,…
+$ num_total_cc_accounts            [3m[38;5;246m<int>[39m[23m 14, 24, 14, 3, 20, 27, 8, 16, 19, 7, 16,…
+$ num_open_cc_accounts             [3m[38;5;246m<int>[39m[23m 8, 14, 8, 3, 15, 12, 7, 12, 14, 5, 8, 8,…
+$ num_cc_carrying_balance          [3m[38;5;246m<int>[39m[23m 6, 4, 6, 2, 13, 5, 6, 10, 14, 3, 5, 3, 5…
+$ num_mort_accounts                [3m[38;5;246m<int>[39m[23m 1, 0, 0, 0, 0, 3, 2, 7, 2, 0, 2, 3, 3, 3…
+$ account_never_delinq_percent     [3m[38;5;246m<dbl>[39m[23m 92.9, 100.0, 93.5, 100.0, 100.0, 78.1, 1…
+$ tax_liens                        [3m[38;5;246m<int>[39m[23m 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…
+$ public_record_bankrupt           [3m[38;5;246m<int>[39m[23m 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0…
+$ loan_purpose                     [3m[38;5;246m<fct>[39m[23m moving, debt_consolidation, other, debt_…
+$ application_type                 [3m[38;5;246m<fct>[39m[23m individual, individual, individual, indi…
+$ loan_amount                      [3m[38;5;246m<int>[39m[23m 28000, 5000, 2000, 21600, 23000, 5000, 2…
+$ term                             [3m[38;5;246m<dbl>[39m[23m 60, 36, 36, 36, 36, 36, 60, 60, 36, 36, …
+$ interest_rate                    [3m[38;5;246m<dbl>[39m[23m 14.07, 12.61, 17.09, 6.72, 14.07, 6.72, …
+$ installment                      [3m[38;5;246m<dbl>[39m[23m 652.53, 167.54, 71.40, 664.19, 786.87, 1…
+$ grade                            [3m[38;5;246m<fct>[39m[23m C, C, D, A, C, A, C, B, C, A, C, B, C, B…
+$ sub_grade                        [3m[38;5;246m<fct>[39m[23m C3, C1, D1, A3, C3, A3, C2, B5, C2, A3, …
+$ issue_month                      [3m[38;5;246m<fct>[39m[23m Mar-2018, Feb-2018, Feb-2018, Jan-2018, …
+$ loan_status                      [3m[38;5;246m<fct>[39m[23m Current, Current, Current, Current, Curr…
+$ initial_listing_status           [3m[38;5;246m<fct>[39m[23m whole, whole, fractional, whole, whole, …
+$ disbursement_method              [3m[38;5;246m<fct>[39m[23m Cash, Cash, Cash, Cash, Cash, Cash, Cash…
+$ balance                          [3m[38;5;246m<dbl>[39m[23m 27015.86, 4651.37, 1824.63, 18853.26, 21…
+$ paid_total                       [3m[38;5;246m<dbl>[39m[23m 1999.330, 499.120, 281.800, 3312.890, 23…
+$ paid_principal                   [3m[38;5;246m<dbl>[39m[23m 984.14, 348.63, 175.37, 2746.74, 1569.85…
+$ paid_interest                    [3m[38;5;246m<dbl>[39m[23m 1015.19, 150.49, 106.43, 566.15, 754.80,…
+$ paid_late_fees                   [3m[38;5;246m<dbl>[39m[23m 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…"
+"1",""
+"1","
+"

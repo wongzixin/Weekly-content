@@ -1,0 +1,8 @@
+"0","# Enter code here"
+"0","comm_data %>%"
+"0","  group_by(sender) %>%"
+"0","  summarise(average_positive_sentiment_scores = mean(sentiment)) %>% "
+"0","  filter(average_positive_sentiment_scores>0) %>%"
+"0","  arrange(desc(average_positive_sentiment_scores)) %>%"
+"0","  select(sender,average_positive_sentiment_scores) %>%"
+"0","  slice(1:3) "

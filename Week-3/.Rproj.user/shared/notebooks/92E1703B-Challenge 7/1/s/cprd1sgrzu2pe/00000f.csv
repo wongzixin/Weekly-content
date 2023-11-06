@@ -1,0 +1,7 @@
+"0","# plotting the same graph above but mapping species to the colour of each point"
+"0","# Enter code here"
+"0","ggplot(data=penguins,"
+"0","       mapping = aes(x=bill_depth_mm,"
+"0","                     y=bill_length_mm,"
+"0","                     colour = species)) +"
+"0","  geom_point()"

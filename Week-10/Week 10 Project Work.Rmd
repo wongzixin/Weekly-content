@@ -1,0 +1,363 @@
+---
+title: "Week 10 Final Project Work"
+author: "Wong Zi Xin"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+library(shiny)
+library(ggplot2)
+library(plotly)
+library(dplyr)
+library(shinydashboard)
+library(reshape2)
+library(scales)
+
+# Define UI
+ui <- fluidPage(
+  
+  # App title
+  titlePanel("Data Story: The Big Picture"),
+  
+  # Create tabs for different graphs
+  tabsetPanel(
+    tabPanel("Number of Passengers by Country",
+             # Output: Plotly Barplot
+             plotlyOutput(outputId = "barPlot1")
+    ),
+    tabPanel("Number of Passengers by Year",
+             # Output: Plotly Barplot
+             plotlyOutput(outputId = "barPlot2")
+    ),
+    tabPanel("Heatmap of Passengers",
+             # Output: Heatmap
+             plotOutput(outputId = "heatmap")
+    )
+  )
+)
+
+# Define server logic
+server <- function(input, output) { 
+  
+  # Read the CSV data into data frames
+  data_country <- read.csv("country_passengers.csv")
+  data_year <- read.csv("year_passengers.csv")
+  data_heatmap <- read.csv("heatmap.csv", skip = 1, header = TRUE)
+  
+  # Melt the heatmap data, reorder it in alphabetical order from top to bottom
+  data_melted <- melt(data_heatmap, id.vars = "Country", variable.name = "Year", value.name = "Value")
+  data_melted$Year <- gsub("^X", "", data_melted$Year)
+  data_melted$Country <- factor(data_melted$Country, levels = rev(sort(unique(data_melted$Country))))
+  
+  # Render the first graph
+  output$barPlot1 <- renderPlotly({
+    
+    # Create a ggplot object
+    p <- ggplot(data_country, aes(x = Country, y = Number.of.Passengers, text = paste("Country: ", Country, "<br>Passengers: ", scales::comma(Number.of.Passengers)))) +
+      geom_bar(stat = "identity", fill = "grey", color = "white") +
+      labs(x = "Country", y = "Number of Passengers", title = "Number of Passengers by Country") +
+      theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+      scale_y_continuous(labels = scales::comma, breaks = seq(0, max(data_country$Number.of.Passengers), by = 200000000))  # Customize y-axis breaks
+    
+    # Convert ggplot object to a plotly object
+    ggplotly(p, tooltip = "text")
+    
+  })
+  
+  # Render the second graph
+  output$barPlot2 <- renderPlotly({
+    
+    # Create a ggplot object
+    p <- ggplot(data_year, aes(x = Year, y = Number.of.Passengers, text = paste("Year: ", Year, "<br>Passengers: ", scales::comma(Number.of.Passengers)))) +
+      geom_bar(stat = "identity", fill = "grey", color = "white") +
+      labs(x = "Year", y = "Number of Passengers", title = "Number of Passengers by Year") +
+      theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+      scale_y_continuous(labels = scales::comma, breaks = seq(0, max(data_year$Number.of.Passengers), by = 100000000))  # Customize y-axis breaks
+    
+    # Convert ggplot object to a plotly object
+    ggplotly(p, tooltip = "text")
+    
+  })
+  
+  # Render the heatmap
+  output$heatmap <- renderPlot({
+    ggplot(data_melted, aes(x = Year, y = Country, fill = Value)) + 
+      geom_tile() + 
+      scale_fill_gradient(low = "white", high = "red", labels = scales::comma) +
+      theme_minimal() +
+      labs(title = "Heatmap", x = "Year", y = "Country")
+    
+  })
+  
+}
+
+# Create Shiny app
+shinyApp(ui = ui, server = server)
+
+
+
+
+library(shiny)
+library(plotly)
+library(shinydashboard)
+library(scales)
+library(tidyverse)
+
+#Creating a new column for replacing 'geo' values 
+country_mapping <- c(
+  AT = "Austria", BE = "Belgium", BG = "Bulgaria", CY = "Cyprus",
+  CZ = "Czechia", DE = "Germany", DK = "Denmark", EE = "Estonia",
+  EL = "Greece", ES = "Spain", FI = "Finland", FR = "France",
+  HR = "Croatia", HU = "Hungary", IE = "Ireland", IT = "Italy",
+  LT = "Lithuania", LU = "Luxembourg", LV = "Latvia", MT = "Malta",
+  NL = "Netherlands", PL = "Poland", PT = "Portugal", RO = "Romania",
+  SE = "Sweden", SI = "Slovenia", SK = "Slovakia"
+)
+
+# Define UI
+ui <- fluidPage(
+  titlePanel("Data Story: The Big Picture"),
+  tabsetPanel(
+    tabPanel("Number of Passengers by Country", plotlyOutput(outputId = "barPlot1")),
+    tabPanel("Number of Passengers by Year", plotlyOutput(outputId = "barPlot2")),
+    tabPanel("Heatmap of Passengers", plotOutput(outputId = "heatmap"))
+  )
+)
+
+# Define server logic
+server <- function(input, output) { 
+  # Using read.csv to read the data
+  data <- read.csv("EU27_passenger_data.csv")
+  
+  # Clean the data
+  cleaned_data <- data %>%
+    select(geo, TIME_PERIOD, OBS_VALUE) %>%          # Select required columns
+    pivot_wider(names_from = TIME_PERIOD,            # Spread the data
+                values_from = OBS_VALUE) %>%
+    #Replace country codes with country names in new column
+    mutate(CountryName = ifelse(geo %in% names(country_mapping), country_mapping[geo], geo))
+  
+  # List of countries to exclude
+  countries_to_exclude <- c("BA", "CH", "EU27_2020", "IS", "ME", "MK", "NO", "RS", "UK")
+  
+  # Exclude the countries from the dataset
+  filtered_data <- cleaned_data %>%
+    filter(!(geo %in% countries_to_exclude))
+  
+  # Melt the data for the heatmap and rename the 'geo' column to 'Country'
+  data_melted <- filtered_data %>%
+    pivot_longer(cols = -c(geo, CountryName), names_to = "Year", values_to = "Value") %>%
+    rename(Country = CountryName) %>% 
+    select(-geo) #Drop the 'geo' column
+  
+  # Reorder countries in alphabetical order from top to bottom
+  data_melted$Country <- factor(data_melted$Country, levels = rev(sort(unique(data_melted$Country))))
+  
+  # Prepare datasets for plots
+  data_country <- filtered_data %>% select(CountryName, `2020`) %>% rename(Country = CountryName, Number.of.Passengers = `2020`)
+  data_year <- data_melted %>% group_by(Year) %>% summarise(Number.of.Passengers = sum(Value, na.rm = TRUE))
+  
+  # Render the first graph
+  output$barPlot1 <- renderPlotly({
+    p <- ggplot(data_country, aes(x = Country, y = Number.of.Passengers, text = paste("Country: ", Country, "<br>Passengers: ", scales::comma(Number.of.Passengers)))) +
+      geom_bar(stat = "identity", fill = "grey", color = "white") +
+      labs(x = "Country", y = "Number of Passengers", title = "Number of Passengers by Country from 2011 to 2022") +
+      theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+      scale_y_continuous(labels = scales::comma, breaks = seq(0, max(data_country$Number.of.Passengers), by = 5000000))
+    ggplotly(p, tooltip = "text")
+  })
+  
+  # Render the second graph
+  output$barPlot2 <- renderPlotly({
+    p <- ggplot(data_year, aes(x = Year, y = Number.of.Passengers, text = paste("Year: ", Year, "<br>Passengers: ", scales::comma(Number.of.Passengers)))) +
+      geom_bar(stat = "identity", fill = "grey", color = "white") +
+      labs(x = "Year", y = "Number of Passengers", title = "Number of Passengers by Year") +
+      theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+      scale_y_continuous(labels = scales::comma, breaks = seq(0, max(data_year$Number.of.Passengers), by = 100000000))
+    ggplotly(p, tooltip = "text")
+  })
+  
+  # Render the heatmap
+  output$heatmap <- renderPlot({
+    ggplot(data_melted, aes(x = Year, y = Country, fill = Value)) + 
+      geom_tile() + 
+      scale_fill_gradient(low = "white", high = "red", labels = scales::comma) +
+      theme_minimal() +
+      labs(title = "Heatmap", x = "Year", y = "Country")
+  })
+}
+
+# Create Shiny app
+shinyApp(ui = ui, server = server)
+
+```{r, eval=TRUE,echo=TRUE}
+library(ggplot2)
+library(tidyverse)
+```
+
+```{r, eval=TRUE,echo=TRUE}
+data <- read.csv("EU27_passenger_data.csv")
+```
+
+```{r, eval=TRUE,echo=TRUE}
+# Your previous data cleaning steps
+cleaned_data <- data %>%
+    select(geo, TIME_PERIOD, OBS_VALUE) %>%
+    pivot_wider(names_from = TIME_PERIOD, values_from = OBS_VALUE) %>%
+    mutate(CountryName = ifelse(geo %in% names(country_mapping), country_mapping[geo], geo))
+
+# Filter the data for years 2019 and 2020
+scatter_data <- cleaned_data %>%
+    select(CountryName, `2019`, `2020`)
+
+ggplot(scatter_data, aes(x = `2019`, y = `2020`, label = CountryName)) +
+  geom_point(aes(color = CountryName), size = 3) +
+  geom_text(aes(label = CountryName), vjust = 2, hjust = 2, size = 3) +
+  labs(
+    x = "Number of Passengers (2019)",
+    y = "Number of Passengers (2020)",
+    title = "Comparison of Air Passenger Numbers: 2019 vs 2020",
+    subtitle = "Each point represents a country",
+    color = "Country"
+  ) +
+  theme_minimal()
+```
+
+library(shiny)
+library(plotly)
+library(shinydashboard)
+library(scales)
+library(tidyverse)
+
+# Creating a new column for replacing 'geo' values
+country_mapping <- c(
+  AT = "Austria", BE = "Belgium", BG = "Bulgaria", CY = "Cyprus",
+  CZ = "Czechia", DE = "Germany", DK = "Denmark", EE = "Estonia",
+  EL = "Greece", ES = "Spain", FI = "Finland", FR = "France",
+  HR = "Croatia", HU = "Hungary", IE = "Ireland", IT = "Italy",
+  LT = "Lithuania", LU = "Luxembourg", LV = "Latvia", MT = "Malta",
+  NL = "Netherlands", PL = "Poland", PT = "Portugal", RO = "Romania",
+  SE = "Sweden", SI = "Slovenia", SK = "Slovakia"
+)
+
+# Define UI
+ui <- fluidPage(
+  titlePanel("Data Story: The Big Picture"),
+  tabsetPanel(
+    tabPanel("Number of Passengers by Country", plotlyOutput(outputId = "barPlot1")),
+    tabPanel("Number of Passengers by Year", plotlyOutput(outputId = "barPlot2")),
+    tabPanel("Heatmap of Passengers", plotOutput(outputId = "heatmap")),
+    tabPanel("Passengers Over Years by Country", 
+             uiOutput("selectCountry"), # This will get the updated choices
+             plotlyOutput(outputId = "barPlot3"))
+    tabPanel("Air Passenger Numbers: 2019 vs 2020", plotlyOutput("scatterPlot"))
+  )
+)
+
+# Define server logic
+server <- function(input, output, session) { 
+  # Using read.csv to read the data
+  data <- read.csv("EU27_passenger_data.csv")
+  
+  # Clean the data
+  cleaned_data <- data %>%
+    select(geo, TIME_PERIOD, OBS_VALUE) %>%          # Select required columns
+    pivot_wider(names_from = TIME_PERIOD,            # Spread the data
+                values_from = OBS_VALUE) %>%
+    mutate(CountryName = ifelse(geo %in% names(country_mapping), country_mapping[geo], geo)) # Replace country codes
+  
+  # List of countries to exclude
+  countries_to_exclude <- c("BA", "CH", "EU27_2020", "IS", "ME", "MK", "NO", "RS", "UK")
+  
+  # Exclude the countries from the dataset
+  filtered_data <- cleaned_data %>%
+    filter(!(geo %in% countries_to_exclude))
+  
+  # Melt the data for the heatmap and rename the 'geo' column to 'Country'
+  data_melted <- filtered_data %>%
+    pivot_longer(cols = -c(geo, CountryName), names_to = "Year", values_to = "Value") %>%
+    rename(Country = CountryName) %>% 
+    select(-geo) #Drop the 'geo' column
+  
+  # Reorder countries in alphabetical order from top to bottom
+  data_melted$Country <- factor(data_melted$Country, levels = rev(sort(unique(data_melted$Country))))
+  
+  # Prepare datasets for plots
+  data_country <- filtered_data %>% select(CountryName, `2020`) %>% rename(Country = CountryName, Number.of.Passengers = `2020`)
+  data_year <- data_melted %>% group_by(Year) %>% summarise(Number.of.Passengers = sum(Value, na.rm = TRUE))
+  
+  # Extracting 2019 and 2020 data for scatter plot
+  scatter_data <- cleaned_data %>%
+    select(Country, `2019`, `2020`) %>%
+    gather(key = "Year", value = "Passengers", -Country) %>%
+    spread(key = Year, value = Passengers)
+  
+  # Render the first graph
+  output$barPlot1 <- renderPlotly({
+    p <- ggplot(data_country, aes(x = Country, y = Number.of.Passengers, text = paste("Country: ", Country, "<br>Passengers: ", scales::comma(Number.of.Passengers)))) +
+      geom_bar(stat = "identity", fill = "grey", color = "white") +
+      labs(x = "Country", y = "Number of Passengers", title = "Number of Passengers by Country") +
+      theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+      scale_y_continuous(labels = scales::comma, breaks = seq(0, max(data_country$Number.of.Passengers), by = 5000000))
+    ggplotly(p, tooltip = "text")
+  })
+  
+  # Render the second graph
+  output$barPlot2 <- renderPlotly({
+    p <- ggplot(data_year, aes(x = Year, y = Number.of.Passengers, text = paste("Year: ", Year, "<br>Passengers: ", scales::comma(Number.of.Passengers)))) +
+      geom_bar(stat = "identity", fill = "grey", color = "white") +
+      labs(x = "Year", y = "Number of Passengers", title = "Number of Passengers by Year") +
+      theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+      scale_y_continuous(labels = scales::comma, breaks = seq(0, max(data_year$Number.of.Passengers), by = 100000000))
+    ggplotly(p, tooltip = "text")
+  })
+  
+  # Render the heatmap
+  output$heatmap <- renderPlot({
+    ggplot(data_melted, aes(x = Year, y = Country, fill = Value)) + 
+      geom_tile() + 
+      scale_fill_gradient(low = "white", high = "red", labels = scales::comma) +
+      theme_minimal() +
+      labs(title = "Heatmap", x = "Year", y = "Country")
+  })
+  
+  # Ensure the selectInput is updated after the data is prepared
+  output$selectCountry <- renderUI({
+    selectInput("selectedCountry", "Select a Country:", choices = unique(data_melted$Country))
+  })
+  
+  # Render the third graph
+  output$barPlot3 <- renderPlotly({
+    req(input$selectedCountry)  # Ensure that input$selectedCountry is available
+    country_data <- data_melted %>%
+      filter(Country == input$selectedCountry) %>%
+      mutate(Year = as.numeric(Year), Value = as.numeric(Value)) %>%
+      arrange(Year)  # Sort the data by Year
+    
+    p <- ggplot(country_data, aes(x = Year, y = Value, group = 1, text = paste("Year: ", Year, "<br>Passengers: ", Value))) +
+      geom_line() +
+      geom_point() +
+      labs(x = "Year", y = "Number of Passengers", title = paste("Number of Passengers over the Years -", input$selectedCountry)) +
+      scale_x_continuous(breaks = 2011:2022) +
+      theme_minimal()
+    
+    ggplotly(p, tooltip = "text")
+  })
+  
+  # Render the scatter plot
+  output$scatterPlot <- renderPlotly({
+    p <- ggplot(scatter_data, aes(x = `2019`, y = `2020`, text = Country)) +
+      geom_point(size = 3) +
+      geom_smooth(method = "lm", se = FALSE, color = "grey") +
+      labs(title = "Air Passenger Numbers: 2019 vs 2020",
+           x = "2019",
+           y = "2020") +
+      theme_minimal()
+    
+    ggplotly(p, tooltip = "text")
+  })
+  
+}
+
+# Create Shiny app
+shinyApp(ui = ui, server = server)

@@ -1,0 +1,7 @@
+"0","# Example a.: execute this example"
+"0","x <- 'A'"
+"0","typeof(x)"
+"1","[1]"
+"1"," ""character"""
+"1","
+"

@@ -1,0 +1,333 @@
+---
+title: "Challenge-3"
+author: "Wong Zi Xin"
+date: "`r Sys.Date()`"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=TRUE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+<style>
+p.comment {
+background-color: #DBDBDB;
+padding: 10px;
+border: 1px solid black;
+margin-left: 25px;
+border-radius: 5px;
+font-style: italic;
+}
+
+</style>
+
+## I. Questions
+
+#### Question 1: Emoji Expressions
+
+Imagine you're analyzing social media posts for sentiment analysis. If you were to create a variable named "postSentiment" to store the sentiment of a post using emojis (for positive, for neutral, for negative), what data type would you assign to this variable? Why? (_narrative type question, no code required_)
+
+**Solution:**  Character data type. Each emoji can be assigned the character positive, neutral or negative, for ease of data analysis. This character data type is also classified as ordinal, as it has a natural ordering. 
+
+
+#### Question 2: Hashtag Havoc
+
+In a study on trending hashtags, you want to store the list of hashtags associated with a post. What data type would you choose for the variable "postHashtags"? How might this data type help you analyze and categorize the hashtags later? (_narrative type question, no code required_)
+
+**Solution:**  Character data type. It allows users to store and manipulate data in a way that allows researchers to work with tectual information, perform text-based analytics, and integrate textual data with other types of data for a comprehensive understanding of the dataset. 
+
+
+#### Question 3: Time Traveler's Log
+  
+You're examining the timing of user interactions on a website. Would you use a numeric or non-numeric data type to represent the timestamp of each interaction? Explain your choice (_narrative type question, no code required_)
+
+**Solution:**  I would use a numeric data type to represent the interaction. This is because timestamps come in the form of numbers, from the hour mark to the minute and second mark.  
+
+
+#### Question 4: Event Elegance
+
+You're managing an event database that includes the date and time of each session. What data type(s) would you use to represent the session date and time? (_narrative type question, no code required_)
+
+**Solution:**  I would assign numeric variables to both session date and time. For session date, I would assign integer since dates are whole numbers without decimal values. For time, I will assign double since time can be numbers with decimal values.
+
+#### Question 5: Nominee Nominations
+You're analyzing nominations for an online award. Each participant can nominate multiple candidates. What data type would be suitable for storing the list of nominated candidates for each participant?  (_narrative type question, no code required_)
+
+**Solution:**  Character data type. This data type is used to store textual data, including names, words, or any alphanumeric information. In this scenario, you would use character data types to store the names or identifiers of the nominated candidates because candidates' names are typically represented as text.
+
+#### Question 6: Communication Channels
+In a survey about preferred communication channels, respondents choose from options like "email," "phone," or "social media." What data type would you assign to the variable "preferredChannel"? (_narrative type question, no code required_)
+
+**Solution:**  Character data type, because the options are presented in the form of text. 
+
+#### Question 7: Colorful Commentary
+
+In a design feedback survey, participants are asked to describe their feelings about a website using color names (e.g., "warm red," "cool blue"). What data type would you choose for the variable "feedbackColor"? (_narrative type question, no code required_)
+
+**Solution:**  Character data type, because the options are presented in the form of text once again.  
+
+#### Question 8: Variable Exploration
+
+Imagine you're conducting a study on social media usage. Identify three variables related to this study, and specify their data types in R. Classify each variable as either numeric or non-numeric.
+
+**Solution:**  Three possible variables are: time spent on social media, social media platform used and date of use. Time spent on social media and date of use will be classified as numeric while social media platform used will be classified as non-numeric. Time spent on social media will have the data type double, social media platform used will have the data type character and date of use will have the data type integer.
+
+#### Question 9: Vector Variety
+
+Create a numeric vector named "ages" containing the ages of five people: 25, 30, 22, 28, and 33. Print the vector.
+
+**Solution:** 
+
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+print(ages<-c(25L,30L,22L,28L,33L)) 
+```
+
+#### Question 10: List Logic
+
+Construct a list named "student_info" that contains the following elements:
+
+  - A character vector of student names: "Alice," "Bob," "Catherine"
+
+  - A numeric vector of their respective scores: 85, 92, 78
+
+  - A logical vector indicating if they passed the exam: TRUE, TRUE, FALSE
+
+Print the list.
+
+**Solution:** 
+
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+student_info <- list(student_names = c("Alice","Bob","Catherine"),scores = c(85,92,78),passed_exam = c(TRUE, TRUE, FALSE))
+student_info
+```
+
+#### Question 11: Type Tracking
+
+You have a vector "data" containing the values 10, 15.5, "20", and TRUE. Determine the data types of each element using the typeof() function.
+
+**Solution:** 
+
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+data <- c(10, 15.5, "20", TRUE)
+print(typeof(data[1]))
+print(typeof(data[2]))
+print(typeof(data[3]))
+print(typeof(data[4]))
+```
+
+#### Question 12: Coercion Chronicles
+
+You have a numeric vector "prices" with values 20.5, 15, and "25". Use explicit coercion to convert the last element to a numeric data type. Print the updated vector.
+
+**Solution:** 
+
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+print(prices<-c(20.5,15,"25"))
+typeof(prices)
+print(prices<- as.numeric(prices))
+typeof(prices)
+```
+
+#### Question 13: Implicit Intuition
+
+Combine the numeric vector c(5, 10, 15) with the character vector c("apple", "banana", "cherry"). What happens to the data types of the combined vector? Explain the concept of implicit coercion.
+
+**Solution:** Implicit coercion is converting the daya type based on its content. 
+
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+print(x<-c(5,10,15))
+typeof(x)
+print(x<-c(x,"apple","banana","cherry"))
+typeof(x)
+```
+
+#### Question 14: Coercion Challenges
+
+You have a vector "numbers" with values 7, 12.5, and "15.7". Calculate the sum of these numbers. Will R automatically handle the data type conversion? If not, how would you handle it?
+
+**Solution:** 
+
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+print(numbers<-c(7,12.5,"15.7"))
+print(numbers<- as.numeric(numbers))
+print(sum(numbers))
+```
+
+#### Question 15: Coercion Consequences
+
+Suppose you want to calculate the average of a vector "grades" with values 85, 90.5, and "75.2". If you directly calculate the mean using the mean() function, what result do you expect? How might you ensure accurate calculation?
+
+**Solution:** 
+
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+grades<-c(85,90.5,"75.2")
+print(mean(as.integer(grades))) 
+```
+
+#### Question 16: Data Diversity in Lists
+
+Create a list named "mixed_data" with the following components:
+
+  - A numeric vector: 10, 20, 30
+  
+  - A character vector: "red", "green", "blue"
+
+  - A logical vector: TRUE, FALSE, TRUE
+  
+Calculate the mean of the numeric vector within the list.
+
+**Solution:** 
+
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+mixed_data <- list(numeric_vector = c(10, 20, 30),character_vector = c("red", "green", "blue"),logical_vector = c(TRUE, FALSE, TRUE))
+mean_numeric_vector <- mean(mixed_data$numeric_vector)
+print(mean_numeric_vector)
+```
+
+#### Question 17: List Logic Follow-up
+
+Using the "student_info" list from Question 10, extract and print the score of the student named "Bob."
+
+**Solution:** 
+
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+print(student_info <- list(student_names = c("Alice","Bob","Catherine"),scores = c(85,92,78),passed_exam = c(TRUE, TRUE, FALSE)))
+print(student_info$scores[student_info$student_names == "Bob"])
+```
+
+#### Question 18: Dynamic Access
+
+Create a numeric vector values with random values. Write R code to dynamically access and print the last element of the vector, regardless of its length. 
+
+**Solution:** 
+
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+print(values<-c(2,33,14,56,70,89))
+print(last_element<-values[length(values)])
+```
+
+#### Question 19: Multiple Matches
+
+You have a character vector words <- c("apple", "banana", "cherry", "apple"). Write R code to find and print the indices of all occurrences of the word "apple."
+
+**Solution:** 
+
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+words<-c("apple","banana","cherry","apple")
+indices_apple <- which(words == "apple")
+print(indices_apple) 
+```
+
+#### Question 20: Conditional Capture
+
+Assume you have a vector ages containing the ages of individuals. Write R code to extract and print the ages of individuals who are older than 30.
+
+**Solution:** 
+
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+ages<-c(30,18,22,34,45,60)
+print(ages[ages>30])
+```
+
+#### Question 21: Extract Every Nth
+
+Given a numeric vector sequence <- 1:20, write R code to extract and print every third element of the vector.
+
+**Solution:** 
+
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+print(x<-c(1:20))
+every_third <-x[seq(3, length(x), by = 3)]
+print(every_third)
+```
+
+#### Question 22: Range Retrieval
+
+Create a numeric vector numbers with values from 1 to 10. Write R code to extract and print the values between the fourth and eighth elements.
+
+**Solution:** 
+
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+print(numbers<-c(1:10))
+print(numbers<-c(4:8))
+```
+
+#### Question 23: Missing Matters
+
+Suppose you have a numeric vector data <- c(10, NA, 15, 20). Write R code to check if the second element of the vector is missing (NA).
+
+**Solution:** 
+
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+data <- c(10, NA, 15, 20)
+print(is_second_element_missing <- is.na(data))
+```
+
+#### Question 24: Temperature Extremes
+
+Assume you have a numeric vector temperatures with daily temperatures. Create a logical vector hot_days that flags days with temperatures above 90 degrees Fahrenheit. Print the total number of hot days.
+
+**Solution:** 
+
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+print(daily_temperatures<-c(88, 92, 89, 95, 91, 87, 96, 89, 93, 85))
+hot_days<-daily_temperatures>90
+print(total_number_hot_days<-sum(hot_days))
+```
+
+#### Question 25: String Selection
+
+Given a character vector fruits containing fruit names, create a logical vector long_names that identifies fruits with names longer than 6 characters. Print the long fruit names.
+
+**Solution:** 
+
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+print(fruit_names<-c("apple","banana","watermelon","orange","guava","pineapple"))
+long_names<-nchar(fruit_names)>6
+print(long_fruit_names<-fruit_names[long_names])
+```
+
+#### Question 26: Data Divisibility
+
+Given a numeric vector numbers, create a logical vector divisible_by_5 to indicate numbers that are divisible by 5. Print the numbers that satisfy this condition.
+
+**Solution:** 
+
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+print(numbers<-c(1:20))
+print(numbers[divisble_by_5<-numbers %% 5 == 0])
+```
+
+#### Question 27: Bigger or Smaller?
+
+You have two numeric vectors vector1 and vector2. Create a logical vector comparison to indicate whether each element in vector1 is greater than the corresponding element in vector2. Print the comparison results.
+
+**Solution:** 
+
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+print(vector1<-c(2,5,7,10))
+print(vector2<-c(1,2,11,20))
+print(c(vector1>vector2))
+```
+

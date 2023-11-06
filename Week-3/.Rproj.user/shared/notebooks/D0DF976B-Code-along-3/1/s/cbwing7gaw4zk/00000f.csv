@@ -1,0 +1,8 @@
+"0","# Access elements using logical vector"
+"0","x[c(TRUE,FALSE,FALSE,TRUE,FALSE,FALSE,TRUE)]"
+"1","[1]"
+"1"," 1"
+"1"," 8"
+"1"," 5"
+"1","
+"

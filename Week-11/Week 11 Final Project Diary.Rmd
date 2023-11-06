@@ -1,0 +1,99 @@
+---
+title: "Week 11 Final Project Diary"
+author: "Wong Zi Xin"
+date: "`r Sys.Date()`"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+# Week 9 Diary 
+## 1. What is the topic that you have finalised?
+The final topic that I have chosen is to create a data story and analyse air transportation data and information in the region of Europe. In the context of my analysis, the definition of Europe refers to the countries in the European Union to date: EU-27 countries. In particular, I will look at EU-27 countries with the most number of passengers and analyse which regions do most people travel to, and observe trends over the years. I chose this topic as I am very interested in travelling, and am curious to derive insights about how the air transport industry was impacted and has picked up again in a post COVID world.
+
+## 2. What are the data sources that you have curated so far?
+I mainly curated my data sources from Kaggle, using datasets containing information about the number of air transport passengers carried by country and datasets containing informaion on the list of airports and airlines globally.
+
+Global datasets: 
+
+https://www.kaggle.com/datasets/tjkyner/global-air-transport-data
+
+https://www.kaggle.com/datasets/thedevastator/global-air-transportation-network-mapping-the-wo
+
+https://www.kaggle.com/datasets/johnmwega/trends-and-insights-of-global-tourism
+
+Datasets specifically looking at Europe: 
+
+https://www.kaggle.com/datasets/gpreda/passengers-air-transport-in-europe
+
+https://data.europa.eu/data/datasets/38mt9yvqp2fhg7wwgqf13q?locale=en
+
+
+# Week 10 Diary 
+
+## 1. What is the question you are going to answer? 
+How have air transportation trends in the EU-27 changed over time?
+
+## 2. Why is this an important question?
+According to the International Air Transport Association (IATA), air travel is one of the most important modes of transportation as the aviation industry contributes significantly to global GDP by facilitating global trade, business, tourism and more. With the outbreak of the COVID-19 pandemic IATA revealed the aviation industry suffered a loss of $118 billion in 2020, but with the gradual revival of air travel post-COVID, insights into air travel can better inform strategies to foster economic recovery. Europe was selected as the focus region as according to the United Nations World Tourism Organisation (UNWTO), Europe is the world's top tourist destination.  
+
+Sources: 
+https://www.iata.org/en/iata-repository/publications/economic-reports/aviation-economic-benefits/
+
+https://www.iata.org/en/iata-repository/publications/economic-reports/understanding-the-pandemics-impact-on-the-aviation-value-chain/
+
+https://www.unwto.org/impact-assessment-of-the-covid-19-outbreak-on-international-tourism
+
+## 3. Which rows and columns of the dataset will be used to answer this question? 
+Columns that are useful to answer this question will be geo (for the country’s name), TIME_PERIOD (to represent the corresponding year) and OBS_VALUE (to represent the total number of passengers). All rows are useful as they represent unique data entries of each country by year.
+
+```{r, out.height= "350px",out.width= "800px",echo=FALSE,eval=TRUE,fig.cap="Screenshot of a portion of dataset used"}
+knitr::include_graphics("/Users/zixinwong/Desktop/Screenshot 2023-10-23 at 6.26.48 PM.png") 
+```
+
+## 4. Include the challenges and errors that you faced and how you overcame them.
+The main dataset that I am using, as seen in the screenshot provided when answering the above question, is not displayed in a very organised and tidy format. The data for each country for each year are all displayed as separate rows. This would make it difficult to create visualisation plots on R, therefore, the first thing I did was to tidy the dataset. 
+
+Firstly, I copied over only variables needed (geo, TIME_PERIOD and OBS_VALUE) into a new Excel sheet. Then, I used the pivot table function in Excel to reorganise the data to make it tidy. 
+
+```{r, out.height= "350px",out.width= "800px",echo=FALSE,eval=TRUE,fig.cap="Tidy dataset"}
+knitr::include_graphics("/Users/zixinwong/Desktop/Screenshot 2023-10-29 at 6.55.54 PM.png") 
+```
+
+After doing so, I highlighted data for countries which did not belong in the EU-27, as I would need to exclude these data for the purpose of my analysis. Furthermore, some of the countries highlighted contain missing values, therefore I removed these countries from the final dataset to be used before I began my analysis 
+
+```{r, out.height= "350px",out.width= "800px",echo=FALSE,eval=TRUE,fig.cap="Final dataset used after tidying and filtering out certain countries' data"}
+knitr::include_graphics("/Users/zixinwong/Desktop/Screenshot 2023-10-29 at 7.01.19 PM.png") 
+```
+After cleaning, tidying and filtering out the data, this is the final dataset I used in my preliminary data analyses. 
+
+# Week 11 Diary 
+
+## 1. List the visualisations that you are going to use in your project 
+The variables I will be plotting include geo (for the country’s name), TIME_PERIOD (to represent the corresponding year) and OBS_VALUE (to represent the total number of passengers). This will help me answer the larger question of how air transportation trends in the EU-27 changed over time, as it provides insight as to how the number of passengers has changed over the years. I will create general visualisation plots in the form of bar plots, looking at the data at a macro level, comparing the total number of passengers across the years and the total number of passengers by country. Given that the dataset contains data from 2011 to 2022, I will compare how the total number of passengers in EU-27 has changed from 2011 to 2022, and the total number of passengers across the 12 years by country. This will reveal broad trends of which years had the most or least number of passengers, and which countries are generally most or least popular among travellers. 
+
+To obtain more specific analyses, I will break down the data and plot the total number of passengers for each country from 2011 to 2022 in a time series plot. This allows me to see trends in air travel for each country in EU-27. To derive further insights, I could compare the total number of passengers between countries for a specific year using a bar graph. 
+Other plots that I am intending to create to help with the visualisation of the whole data story include a heatmap of the total number of passengers from 2011 to 2022 by country. With colour gradients on the heatmap, it will make visualising the data easier and more comprehensible. 
+
+With these visualisation plots, I could then research on possible major events that resulted in an increase or decrease in the number of passengers. A major event I have in mind includes the outbreak of the pandemic, where I could use the visualisation plots to analyse how much air travel decreased and picked up again. 
+
+## 2. How do you plan to make it interactive?
+To make the story interactive, I intend to make numbers appear over the bar plots for the general visualisations when users hover over each bar representing a specific year or country. Based on research, I can do this by using ggplotly from the plotly package and incorporate it onto the Shiny app by utilising the “text” aesthetic in my ggplot code. To generate the output, I will then convert the ggplot object to a plotly object using ggplotly(). 
+
+I am also intending to use Shiny widgets to allow users to select which country’s data they would like to look at from the sidebar, such that they are able to navigate between the data for different countries and explore countries they are more interested in. While I am unsure of how to achieve this now, I recall doing something similar in Week 8’s Code Alone and Challenge using the “10_download” example. Except this time, instead of providing options to choose a dataset to download, the options will be the EU-27 countries' data that users can view. Therefore, I will try to do something similar and rely on online resources to adapt my learning. 
+
+## 3. What concepts incorporated in your project were taught in the course and which ones were self-learnt?
+For the plots I have created so far, these are the concepts incorporated that were taught in the course and self-learnt. 
+
+Previously, I had used Excel to clean and tidy my dataset. From there, I created multiple csv files for each plot I wanted to generate to write my code. However, I realised I could have approached this in a more efficient manner, by applying what I have learnt in class in Weeks 4 and 9. Further elaboration will be stated in the table.
+
+```{r, out.height= "350px",out.width= "800px",echo=FALSE,eval=TRUE,fig.cap="Final dataset used after tidying and filtering out certain countries' data"}
+knitr::include_graphics("/Users/zixinwong/Desktop/Screenshot 2023-10-30 at 2.25.07 AM.png") 
+```
+
+Specifically when rendering the heatmap, I encountered the error message "error: [object Object]" and no output graph is generated. I googled and apparently, errors can be due to the Shiny environment or the way it interacts with ggplot2. Therefore, I followed their suggestion to render the heatmap outside of the Shiny app, in an R markdown file, to see if the heatmap is being generated correctly. This will help me isolate if the issue is with the Shiny environment or within my code and data itself. Given the error message is quite generic, I also referred to the console for more detailed error messages, which told me the problem was while computing aesthetics as object 'Country' was not found. From there, I realised that I had missed out the column for 'Country' when writing my code for data_melted, the dataset I am using for my heatmap, which was why the error had occurred. I refined this part of my code accordingly by ensuring the column 'Country' was defined properly, and managed to resolve the issue. 
+
+Generally for the plots I've generated thus far, I am intending to also work on inserting a legend for the country code to make the plots clearer as not everyone may know which country code stands for which country. 
+
+## 4. Include the challenges and errors that you faced and how you overcame them.
+My main difficulty this week was creating the plots for specific countries, and presenting them in a way that users can select the countries from the sidebar and then explore the plots I have generated for each country. I had first intended to adapt the "10_Download" example on Shiny, but soon realised I did not know how to modify the code. To overcome this issue, I first double checked on Google to make sure that I did not need to create individual plots for every country one by one, which made sense as this would be too time-consuming. Online resources directed me to make use of Shiny's reactive programming framework to generate plots based on user input, which I will attempt within this week. 
