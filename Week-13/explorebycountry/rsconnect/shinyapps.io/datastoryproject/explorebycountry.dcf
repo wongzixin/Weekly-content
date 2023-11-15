@@ -1,0 +1,10 @@
+name: explorebycountry
+title:
+username: datastoryproject
+account: datastoryproject
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 10467197
+bundleId: 7906122
+url: https://datastoryproject.shinyapps.io/explorebycountry/
+version: 1

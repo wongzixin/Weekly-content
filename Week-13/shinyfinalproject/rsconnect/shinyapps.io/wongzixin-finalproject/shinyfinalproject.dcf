@@ -1,0 +1,12 @@
+name: shinyfinalproject
+title: shinyfinalproject
+username: wongzixin-finalproject
+account: wongzixin-finalproject
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 10343011
+bundleId: 7920469
+url: https://wongzixin-finalproject.shinyapps.io/shinyfinalproject/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE

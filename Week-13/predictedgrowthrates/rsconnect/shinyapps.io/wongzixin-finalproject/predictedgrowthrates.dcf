@@ -1,0 +1,12 @@
+name: predictedgrowthrates
+title: predictedgrowthrates
+username: wongzixin-finalproject
+account: wongzixin-finalproject
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 10503383
+bundleId: 7920411
+url: https://wongzixin-finalproject.shinyapps.io/predictedgrowthrates/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE
