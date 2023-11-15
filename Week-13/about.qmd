@@ -1,0 +1,26 @@
+---
+title: "NM2207 Weekly Codes"
+format: html
+editor: visual
+---
+
+## Code Folders
+
+```{r, echo=FALSE, out.width='100%'}
+knitr::include_graphics("/Users/zixinwong/Desktop/NUS/Academics/CNM/NM2207/MAIN/wongzixin.github.io/docs/codes.jpeg")
+```
+
+Click on any one of the folders below to see what I have been doing and have learnt in each week of class! Each folder contains the data sets I have used, the Code Along practices and Challenge submissions for each week. From Week 9 onward, diary entries logging the progress for my Final Project will be in the folders.
+
+1.  \[[Week-1 Folder](https://github.com/wongzixin/Weekly-content/tree/main/Week-1)\]
+2.  \[[Week-2 Folder](https://github.com/wongzixin/Weekly-content/tree/main/Week-2)\]
+3.  \[[Week-3 Folder](https://github.com/wongzixin/Weekly-content/tree/main/Week-3)\]
+4.  \[[Week-4 Folder](https://github.com/wongzixin/Weekly-content/tree/main/Week-4)\]
+5.  \[[Week-5 Folder](https://github.com/wongzixin/Weekly-content/tree/main/Week-5)\]
+6.  \[[Week-6 Folder](https://github.com/wongzixin/Weekly-content/tree/main/Week-6)\]
+7.  \[[Week-7 Folder](https://github.com/wongzixin/Weekly-content/tree/main/Week-7)\]
+8.  \[[Week-8 Folder](https://github.com/wongzixin/Weekly-content/tree/main/Week-8)\]
+9.  \[[Week-9 Folder](https://github.com/wongzixin/Weekly-content/tree/main/Week-9)\]
+10. \[[Week-10 Folder](https://github.com/wongzixin/Weekly-content/tree/main/Week-10)\]
+11. \[[Week-11 Folder](https://github.com/wongzixin/Weekly-content/tree/main/Week-11)\]
+12. \[[Week-12 Folder](https://github.com/wongzixin/Weekly-content/tree/main/Week-12)\]

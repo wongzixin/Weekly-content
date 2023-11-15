@@ -1,0 +1,17 @@
+---
+title: "Progress Tracking"
+format: html
+editor: visual
+---
+
+# Weekly Learning
+
+This [document](https://docs.google.com/document/d/1inKG3E5zHJt-Ebd_CZYJZsWG_KuzMmu-JK3iT6kMqsw/edit?usp=sharing){target="_blank"} highlights the concepts I have applied based on my knowledge from NM2207, and new learning I've done outside of NM2207 to work on my Final Data Story Project. It also covers the problems I encountered along the way when working on the project and what I did to overcome them.
+
+Generally, I realised most of the time I encountered errors relating to calling the correct column names. This is because I make a lot of changes to the original dataset. From the beginning, I already cleaned, filtered and tidied the original data a few times, renaming certain columns in the process. Therefore, I have to ensure I am calling columns that exist in the dataset I am using currently. To resolve this issue, I checked through each line of code to ensure the variables existed and are keyed in correctly (uppercase, lowercase) to ensure consistency. Most of the time, I was able to troubleshoot by checking each line of code. It is therefore crucial to add comments at key sections of the code to indicate what I am intending to achieve, such that when I look back at huge chunks of code in future I am not confused and am able to troubleshoot line-by-line.
+
+# Module Reflection
+
+## What are my key takeaways from the Final Project?
+
+I've learnt the importance of visualisation plots in offering an alternative way to present, read and understand information. In my original data set, information was presented in an untidy manner which made it difficult to observe trends over the years. Furthermore, the values for my project range in the millions to billions zone and contain long string of numbers. By converting these data into visualisation plots, it makes understanding the data set a lot less taxing and a lot clearer visually.

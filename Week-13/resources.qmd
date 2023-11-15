@@ -1,0 +1,29 @@
+---
+title: "Resources"
+format: html
+editor: visual
+---
+
+# Interested in learning more about trends in the aviation industry?
+
+```{r, echo=FALSE, out.width='100%'}
+knitr::include_graphics("/Users/zixinwong/Desktop/NUS/Academics/CNM/NM2207/MAIN/wongzixin.github.io/docs/plane.webp")
+```
+
+I have curated a list of short reads for anyone interested in understanding more about trends in the aviation industry generally, and in particular within the region of Europe. These articles also provided important information for me as I worked on my Data Story project! :)
+
+### 1. Future of Aviation
+
+[This](https://www.icao.int/Meetings/FutureOfAviation/Pages/default.aspx){target="_blank"} discusses the critical role of mobility and transport in the socio-economic framework of our society, emphasising how these factors contribute to social connections and access to essential services. It underlines the challenge of adapting the current mobility system to meet the increasing demands of a growing population. This necessitates innovative solutions for sustainable expansion.
+
+### 2. Aviation Economic Benefits
+
+This [report](https://www.iata.org/en/iata-repository/publications/economic-reports/aviation-economic-benefits/){target="_blank"} dives into great detail the contributions of the aviation industry on different sectors in society. It particularly focuses on anlaysing the economic benefits brought about by the aviation industry, with data visualisations on trends over the years across countries worldwide.
+
+### 3. COVID-19 and its Impacts on the Aviation Industry
+
+This [report](https://www.iata.org/en/iata-repository/publications/economic-reports/understanding-the-pandemics-impact-on-the-aviation-value-chain/){target="_blank"} highlights how the outbreak of the pandemic impacted various aspects of the aviation industry amid lock downs and travel restrictions. Notable key points from the report include the economic performance of the aviation value chain. During the pandemic, the aviation industry faced massive losses, with airlines incurring the most significant financial damage---USD 175 billion in 2020 and USD 104 billion in 2021.
+
+### 4. COVID-19 and its Impacts on International Tourism
+
+This [article](https://www.unwto.org/impact-assessment-of-the-covid-19-outbreak-on-international-tourism){target="_blank"} concisely summarises trends in international tourism and how the outbreak of the pandemic impacted this sector. It is an easy read that incorporates many data visualisation graphs to get its key points across.
