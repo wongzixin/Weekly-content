@@ -1,0 +1,30 @@
+---
+title: "Week 9 Final Project Diary"
+author: "Wong Zi Xin"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+# Week 9 Diary
+
+## 1. What is the topic that you have finalised?
+
+The final topic that I have chosen is to create a data story and analyse global air transportation data and information. In particular, I will look at countries with the most air transport of passengers and try to analyse which regions do most people travel to, which regions have the most airports and observe trends over the years. I chose this topic as I am very interested in travelling, and am curious to derive insights about how the air transport industry has picked up again in a post COVID world.
+
+## 2. What are the data sources that you have curated so far?
+
+I mainly curated my data sources from Kaggle, using datasets containing information about the number of air transport passengers carried by country and datasets containing informaion on the list of airports and airlines globally.
+
+Global datasets:
+
+<https://www.kaggle.com/datasets/tjkyner/global-air-transport-data>
+
+<https://www.kaggle.com/datasets/thedevastator/global-air-transportation-network-mapping-the-wo>
+
+<https://www.kaggle.com/datasets/johnmwega/trends-and-insights-of-global-tourism>
+
+Datasets specifically looking at Europe:
+
+<https://www.kaggle.com/datasets/gpreda/passengers-air-transport-in-europe>
+
+<https://data.europa.eu/data/datasets/38mt9yvqp2fhg7wwgqf13q?locale=en>
