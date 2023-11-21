@@ -3,8 +3,8 @@ title: "Week 13 Final Project Diary"
 author: "Wong Zi Xin"
 date: "`r Sys.Date()`"
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
 ---
 
 # Week 9 Diary 
